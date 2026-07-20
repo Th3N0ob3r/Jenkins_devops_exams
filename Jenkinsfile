@@ -33,7 +33,7 @@ pipeline {
                 script {
                     sh '''
                         docker login -u $DOCKER_ID -p $DOCKER_PASS
-                        docker compose push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                        docker compose push
                     '''
                 }
             }
