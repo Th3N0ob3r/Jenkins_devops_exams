@@ -20,7 +20,7 @@ pipeline {
         stage('Test Acceptance'){ // lanzamos el comando curl para validar que el contenedor responde a la solicitud
             steps {
                 script {
-                    sh 'curl localhost'
+                    sh 'curl localhost:8080'
                 }
             }
         }
