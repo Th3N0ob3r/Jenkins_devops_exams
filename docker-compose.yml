@@ -3,6 +3,7 @@ version: '3.7'
 services:
   movie_service:
     build: ./movie-service
+    image: fabian1243/movie-service:latest
     command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     volumes:
       - ./movie-service/:/app/
@@ -25,6 +26,7 @@ services:
 
   cast_service:
     build: ./cast-service
+    image: fabian1243/cast-service:latest
     command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     volumes:
       - ./cast-service/:/app/
