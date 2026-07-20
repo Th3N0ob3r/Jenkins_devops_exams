@@ -11,6 +11,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                        echo "BUILD_ID=$DOCKER_TAG" > .env
                         docker compose up -d --build
                         sleep 6
                     '''
@@ -34,8 +35,7 @@ pipeline {
                 script {
                     sh '''
                         docker login -u $DOCKER_ID -p $DOCKER_PASS
-                        docker push $DOCKER_ID/$DOCKER_IMAGE_1:$DOCKER_TAG                        
-                        docker push $DOCKER_ID/$DOCKER_IMAGE_2:$DOCKER_TAG
+                        docker compose push
                     '''
                 }
             }
