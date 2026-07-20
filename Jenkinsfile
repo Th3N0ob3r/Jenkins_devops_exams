@@ -12,6 +12,7 @@ pipeline {
                 script {
                     sh '''
                         echo "BUILD_ID=$DOCKER_TAG" > .env
+                        echo "BUILD_ID=$DOCKER_TAG"
                         docker compose up -d --build
                         sleep 6
                     '''
