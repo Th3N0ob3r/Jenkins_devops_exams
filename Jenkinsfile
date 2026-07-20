@@ -36,7 +36,10 @@ pipeline {
                 script {
                     sh '''
                         docker login -u $DOCKER_ID -p $DOCKER_PASS
-                        docker compose push
+                        docker tag $DOCKER_ID/$DOCKER_IMAGE_1:${BUILD_ID} $DOCKER_ID/$DOCKER_IMAGE_1:$DOCKER_TAG
+                        docker tag $DOCKER_ID/$DOCKER_IMAGE_2:${BUILD_ID} $DOCKER_ID/$DOCKER_IMAGE_2:$DOCKER_TAG
+                        docker push $DOCKER_ID/$DOCKER_IMAGE_1:$DOCKER_TAG                        
+                        docker push $DOCKER_ID/$DOCKER_IMAGE_2:$DOCKER_TAG
                     '''
                 }
             }
