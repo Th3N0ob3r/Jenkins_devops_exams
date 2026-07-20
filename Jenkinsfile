@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker compose build
+                        docker compose build $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
                         sleep 6
                     '''
                 }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker compose run -d --name jenkins_exam
+                    docker compose run -d --name jenkins_exam $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
                     sleep 10
                     '''
                 }
@@ -44,7 +44,7 @@ pipeline {
                 script {
                     sh '''
                         docker login -u $DOCKER_ID -p $DOCKER_PASS
-                        docker compose push
+                        docker compose push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
                     '''
                 }
             }
