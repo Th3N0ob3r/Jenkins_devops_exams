@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker compose run -d --name jenkins_exam $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                    docker compose run -d --name jenkins_exam
                     sleep 10
                     '''
                 }
