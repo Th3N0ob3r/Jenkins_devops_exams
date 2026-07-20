@@ -1,7 +1,8 @@
 pipeline {
     environment { // Declaration of environment variables
         DOCKER_ID = "fabian1243"  // replace this with your docker-id
-        DOCKER_IMAGE = "liora_devops_exam"
+        DOCKER_IMAGE_1 = "cast-service"
+        DOCKER_IMAGE_2 = "movie-service"
         DOCKER_TAG = "v.${BUILD_ID}.0" // we will tag our images with the current build in order to increment the value by 1 with each new build
     }
     agent any // Jenkins will be able to select all available agents
@@ -33,7 +34,8 @@ pipeline {
                 script {
                     sh '''
                         docker login -u $DOCKER_ID -p $DOCKER_PASS
-                        docker push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                        docker push $DOCKER_ID/$DOCKER_IMAGE_1:$DOCKER_TAG                        
+                        docker push $DOCKER_ID/$DOCKER_IMAGE_2:$DOCKER_TAG
                     '''
                 }
             }
