@@ -6,23 +6,12 @@ pipeline {
     }
     agent any // Jenkins will be able to select all available agents
     stages {
-        stage('Docker Build'){ // docker build image stage
+        stage('Docker compose up'){ // docker build image stage
             steps {
                 script {
                     sh '''
-                        docker compose build $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                        docker compose up -d --build
                         sleep 6
-                    '''
-                }
-            }
-        }
-
-        stage('Docker run'){ // run container from our built image
-            steps {
-                script {
-                    sh '''
-                    docker compose run -d --name jenkins_exam $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
-                    sleep 10
                     '''
                 }
             }
